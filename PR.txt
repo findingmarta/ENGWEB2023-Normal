@@ -1,0 +1,36 @@
+A persistência de dados é feita a partir da mongoDB que é inicializada a partir
+dos comandos:
+
+npm install mongoose --save
+mongoimport -d plantas -c plantas --file pessoas.json --jsonArray
+
+Antes de executar estes comandos tive em conta a alteração de campos da base de dados,
+nomeadamente, dos campos id para _id e dos campos com espaços no nome.
+
+
+
+1. Quantos registos estão na base de dados;
+db.plantas.countDocuments()
+R: 29617
+
+
+2. Quantos registos de plantação se encontram na freguesia "São Domingos de Rana"?
+db.plantas.count({Freguesia: "São Domingos de Rana"})
+R: 5903
+
+
+3. Qual a lista de freguesias (ordenada alfabeticamente e sem repetições)?
+db.plantas.distinct("Freguesia").sort()
+
+
+4. Qual a distribuição dos registos por freguesia (quantos registos em cada freguesia)
+db.plantas.aggregate([{$group: {_id:"$Freguesia", count: {$sum: 1}}}])
+
+
+5. Qual a distribuição dos registos por espécie?
+db.plantas.aggregate([{$group: {_id:"$Espécie", count: {$sum: 1}}}])
+
+
+
+Para executar a aplicação desenvolvida basta utilizar o comando npm start dentro 
+da pasta API e da pasta Interface.
