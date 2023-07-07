@@ -15,7 +15,7 @@ block content
         
             each planta in plantas
                 tr
-                    td= planta._id
+                    td #[a(href="/"+planta._id)=planta._id]
                     td= planta.Freguesia
                     td= planta.Estado
                     td= planta.N_Intervencoes

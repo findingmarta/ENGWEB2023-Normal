@@ -14,9 +14,9 @@ block content
         
         each planta in plantas
           tr
-            td(onclick='changePage(\"' + planta._id + '\")')= planta._id
+            td #[a(href="/"+planta._id)= planta._id]
             td= planta.Freguesia
-            td(onclick='changeSpecies(\"' + planta.Espécie + '\")')= planta.Espécie
+            td #[a(href="/especies/"+planta.Espécie)= planta.Espécie]
             td= planta.Estado
             td= planta.N_Intervencoes
               

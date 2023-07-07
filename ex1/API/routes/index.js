@@ -14,7 +14,7 @@ router.get('/plantas', function(req, res, next) {
         })
   }
   else if(req.query.implant){
-    Plantas.plantasImplantacao(req.query.implantacao)
+    Plantas.plantasImplantacao(req.query.implant)
         .then(plantas=>{
           res.json(plantas)
         })
@@ -33,18 +33,6 @@ router.get('/plantas', function(req, res, next) {
   }
 });
 
-router.get('/plantas/:id', function(req, res, next) {
-  console.log(req.params.id)
-  Plantas.getPlantas(req.params.id)
-    .then(planta=>{
-      res.json(planta)
-    })
-    .catch(erro=>{
-      res.status(602).json({ message: "Erro a obter planta",error:erro })
-    })
-});
-
-
 router.get('/plantas/freguesias', function(req, res, next) {
   Plantas.freguesias()
     .then(lista_freguesias=>{
@@ -54,7 +42,6 @@ router.get('/plantas/freguesias', function(req, res, next) {
       res.status(602).json({ message: "Erro a obter lista de freguesias",error:erro })
     })
 });
-
 
 router.get('/plantas/especies', function(req, res, next) {
   Plantas.especies()
@@ -66,6 +53,16 @@ router.get('/plantas/especies', function(req, res, next) {
     })
 });
 
+router.get('/plantas/:id', function(req, res, next) {
+  console.log(req.params.id)
+  Plantas.getPlantas(req.params.id)
+    .then(planta=>{
+      res.json(planta)
+    })
+    .catch(erro=>{
+      res.status(602).json({ message: "Erro a obter planta",error:erro })
+    })
+});
 
 router.post('/plantas', function(req, res, next) {
   Plantas.addPlanta(req.body)

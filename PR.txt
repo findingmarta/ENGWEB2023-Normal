@@ -32,5 +32,5 @@ db.plantas.aggregate([{$group: {_id:"$Espécie", count: {$sum: 1}}}])
 
 
 
-Para executar a aplicação desenvolvida basta utilizar o comando npm start dentro 
+Para executar a aplicação desenvolvida basta utilizar o comando npm i, para instalar as dependências, seguido do comando npm start dentro 
 da pasta API e da pasta Interface.
